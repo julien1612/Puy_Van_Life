@@ -39,7 +39,7 @@ final class LocationFactory extends PersistentProxyObjectFactory
             'latitude' => self::faker()->randomFloat(2, 45.3, 46.1),
             'longitude' => self::faker()->randomFloat(2, 2.5, 4.0),
             'price' => self::faker()->numberBetween(2, 50),
-            'type' => self::faker()->text(255),
+            'type' => self::faker()->text(20),
             'user' => UserFactory::new(),
         ];
     }

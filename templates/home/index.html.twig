@@ -10,49 +10,46 @@
             </h2>
         </div>
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis cupiditate deserunt ipsum
-        itaque, modi molestiae nemo non nulla officiis quasi quod ratione rem sapiente tempore temporibus, tenetur?
-        Magnam.</p>
+
+    <h2 style="text-align: center; margin-top: 3rem; color: #2c3e50">Lieux à découvrir</h2>
+
+    <div class="container w-75" style="text-align: center; margin-top: 3rem">
+        <h5 style="color: #2c3e50"><i>Le van n'est pas qu'un simple véhicule, c'est une invitation. Une fenêtre ouverte
+                sur l'horizon, un abri nomade où chaque kilomètre dessine une nouvelle liberté. C'est l'appel du large,
+                la douceur des matins improvisés et la promesse d'aventures, juste là, sur quatre roues.<br>
+                <strong>Découvrez les meilleurs spots, partagés par des passionnés. L'évasion commence ici.</strong>
+            </i></h5>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% for location in lastLocation %}
+            <div class="card" style="width: 20rem; margin-right: 3rem; margin-top: 3rem ; background-color: #f1f3f6">
+                <div class="card-body">
+                    {% set mainPicture='https://picsum.photos/200/300' %}
+                    {% if location.picture|length > 0 %}
+                        {% set mainPicture = location.picture[0].path ~ '?rand=' ~ random(1000) %}
+                    {% endif %}
+                    <img src="{{ mainPicture }}" class="card-img-top" alt="pictureLocation">
+                    <h5 class="card-title" style="color: #2c3e50">{{ location.address }}</h5>
+                    <p class="card-text" style="color: #2c3e50">{{ location.description | u.truncate(100, '...') }}</p>
+                    <a href="#" class="btn btn-primary">Voir plus</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2 style="text-align: center; margin-top: 3rem; margin-bottom: 3rem; color: #2c3e50">Point météo</h2>
+
+    <div class="container col-md-8">
+        <div class="card text-bg-dark">
+            <img src="{{ asset('pictures/puy-dome-JQvrJtqI4Yg-unsplash (1).jpg') }}" class="card-img, img-fluid"
+                 alt="pictureWeather" style="height: 30rem">
+            <div class="card-img-overlay">
+                <h5 class="card-title" style="color: #2c3e50">Clermont Ferrand</h5>
+                <p class="card-text" style="color: #2c3e50">Température extérieure: {{ weather.current.temperature_2m }}
+                    °c</p>
+                <p class="card-text" style="color: #2c3e50"><small></small></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
