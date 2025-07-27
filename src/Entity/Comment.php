@@ -22,7 +22,7 @@ class Comment
     #[ORM\Column]
     private ?\DateTime $commentDate = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commenÂt')]
+    #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Location $location = null;
 

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1 class="soloLocationH1"><img class="iconCc" src="{{ asset('pictures/icon_cc.svg') }}" alt="icon_cc"> {{ location.address }}</h1>
+<div class="container">
+    <div class="d-flex ">
+        <div class="p-2 flex-fill">
+            {% for picture in pictures %}
+            <img class="imgPicture" src="{{ picture.path }}" alt="picture_loc">
+            {% endfor %}
+        </div>
+        <div class="p-2 flex-fill">
+            <div class="card descriptionCard">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Type:</strong> {{ location.type }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary"><strong>Créé
+                            le:</strong> {{ location.createdAt.format('d/m/Y') }}</h6>
+                    <p class="card-text"><strong>Description:</strong>{{ location.description }}</p>
+                    <p><strong>Prix du stationnement:</strong>{{ location.price }}€</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    <div class="card text-center">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            {% for comment in comments %}
+            <p class="card-text">{{ comment.comment }}</p>
+            {% endfor %}
+        </div>
+        <div class="card-footer text-body-secondary">
+            2 days ago
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

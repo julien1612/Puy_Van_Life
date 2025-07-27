@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Picture;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use function Zenstruck\Foundry\faker;
 
 /**
  * @extends PersistentProxyObjectFactory<Picture>
@@ -34,7 +35,7 @@ final class PictureFactory extends PersistentProxyObjectFactory
         return [
             'user' => UserFactory::random(),
             'location' => LocationFactory::random(),
-            'path' => "https://picsum.photos/200/300",
+            'path' => "https://picsum.photos/" . faker()->numberBetween(300, 1000) . "/" . faker()->numberBetween(300, 1000),
         ];
     }
 

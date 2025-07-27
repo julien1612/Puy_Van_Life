@@ -7,3 +7,42 @@
 a {
     text-decoration: none;
 }
+
+
+.bg-custom {
+    background-color: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 10px
+}
+
+h1 {
+    color: #ced4da;
+}
+
+.linkHome {
+    margin-right: 1.5rem;
+    color: #2c3e50;
+}
+
+.linkSpots {
+    margin-right: 1.5rem;
+    color: #2c3e50;
+}
+
+.linkEvenements {
+    margin-right: 1.5rem;
+    color: #2c3e50;
+}
+
+.linkCharter {
+    margin-right: 3rem;
+    color: #2c3e50;
+}
+
+.buttonHeader {
+    background-color: #ced4da;
+    margin-right: 1.5rem;
+    color: #2c3e50;
+    border: solid #2c3e50;
+}

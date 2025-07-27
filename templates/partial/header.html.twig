@@ -1,18 +1,30 @@
-
-<nav class="navbar bg-body-tertiary" style="padding: 0">
-    <div class="container-fluid" style="background-color: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- ; padding: 10px">
+<nav class="navbar bg-body-tertiary p-0">
+    <div class="container-fluid bg-custom p">
         <img src="{{ asset('pictures/Gemini_Generated_Image_43xthc43xthc43xt.png') }}" alt="logo">
-       <div class="titleHeader"><h1 style="color: #ced4da">PuyVanLife</h1></div>
+        <div class="titleHeader"><h1>PuyVanLife</h1></div>
         <form class="d-flex" role="search">
-            <a href="" style="margin-right: 1.5rem ; color: #2c3e50"><strong>Acceuil</strong></a>
-            <a href="" style="margin-right: 1.5rem ; color: #2c3e50"><strong>Les spots</strong></a>
-            <a href="" style="margin-right: 1.5rem ; color: #2c3e50"><strong>Evenements</strong></a>
-            <a href="" style="margin-right: 3rem ; color: #2c3e50"><strong>La chartre</strong></a>
-            <button class="btn" style=" background-color: #ced4da ; margin-right: 1rem ; color: #2c3e50 ; border: solid #2c3e50" type="submit"><strong>Connexion</strong></button>
+            <a class="linkHome" href="{{ path('app_home') }}"><strong>Acceuil</strong></a>
+            <a class="linkSpots" href="{{ path('spots_app') }}"><strong>Les
+                    spots</strong></a>
+            <a class="linkEvenements" href="{{ path('evenements_app') }}"><strong>Evenements</strong></a>
+            <a class="linkCharter" href="{{ path('charter_app') }}"><strong>La chartre</strong></a>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle buttonHeader" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Connexion
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ path('connexion_app') }}">Me connecter</a></li>
+                    <li><a class="dropdown-item" href="{{ path('inscription_app') }}">M'inscrire</a></li>
+
+                </ul>
+            </div>
         </form>
     </div>
 </nav>
+
+
+
+
 

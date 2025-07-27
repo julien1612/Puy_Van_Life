@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
@@ -14,30 +15,39 @@ class Location
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['id'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['description'])]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column()]
+    #[Groups(['latitude'])]
     private ?float $latitude = null;
 
     #[ORM\Column]
+    #[Groups(['longitude'])]
     private ?float $longitude = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['address'])]
     private ?string $address = null;
 
     #[ORM\Column]
+    #[Groups(['createdAt'])]
     private ?\DateTime $createdAt = null;
 
     #[ORM\Column]
+    #[Groups(['price'])]
     private ?int $price = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['type'])]
     private ?string $type = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['imagePath'])]
     private ?string $imagePath = null;
 
     #[ORM\ManyToOne(inversedBy: 'locations')]
@@ -54,12 +64,12 @@ class Location
      * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'location')]
-    private Collection $commen혊;
+    private Collection $comments;
 
     public function __construct()
     {
         $this->picture = new ArrayCollection();
-        $this->commen혊 = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,27 +218,27 @@ class Location
     /**
      * @return Collection<int, Comment>
      */
-    public function getCommen혊(): Collection
+    public function getComments(): Collection
     {
-        return $this->commen혊;
+        return $this->comments;
     }
 
-    public function addCommenT(Comment $commenT): static
+    public function addComment(Comment $comment): static
     {
-        if (!$this->commen혊->contains($commenT)) {
-            $this->commen혊->add($commenT);
-            $commenT->setLocation($this);
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setLocation($this);
         }
 
         return $this;
     }
 
-    public function removeCommenT(Comment $commenT): static
+    public function removeComment(Comment $comment): static
     {
-        if ($this->commen혊->removeElement($commenT)) {
+        if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($commenT->getLocation() === $this) {
-                $commenT->setLocation(null);
+            if ($comment->getLocation() === $this) {
+                $comment->setLocation(null);
             }
         }
 
