@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
 UserFactory::createMany(200);
 LocationFactory::createMany(200);
-CommentFactory::createMany(200);
+CommentFactory::createMany(1000);
 PictureFactory::createMany(300);
 EventFactory::createMany(200);
         $manager->flush();
