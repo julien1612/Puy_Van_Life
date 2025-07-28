@@ -25,7 +25,7 @@ class SoloLocationController extends AbstractController
         $location = $locationRepository->findOneBy(['id' => $id]);
         $pictures = $pictureRepository->findBy(['location' => $id]);
         $comment = $commentRepository->findBy(['location' => $id]);
- dd($comment);
+// dd($comment);
 
 
         return $this->render('location/soloLocation.html.twig',[
