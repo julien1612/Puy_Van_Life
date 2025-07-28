@@ -23,18 +23,19 @@ class RegistrationForm extends AbstractType
                 'required' => true,
                 'label' => 'Email',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3',
                 ]
             ])
             ->add('username', null, [
                 'label' => 'Pseudo',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3',
                 ]
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
                 'constraints' => [
@@ -52,7 +53,7 @@ class RegistrationForm extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider mon inscription',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-3',
+                    'class' => 'btn btn-secondary btnForm',
                 ]
             ]);
     }
