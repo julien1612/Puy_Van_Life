@@ -36,6 +36,7 @@ if (map !== null) {
 
         const cardElement = document.querySelector('[data-location-id="' + location.id + '"]');
         marker.on('click', () => {
+            cardElement.style.backgroundColor = 'lightblue';
 
             const elementAlreadyFocus = document.querySelector('.location-focus');
             if (elementAlreadyFocus) {
