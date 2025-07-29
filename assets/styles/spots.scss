@@ -11,14 +11,22 @@
 .cardLocation {
     width: 18rem;
     margin-bottom: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        transition-duration: 700ms;
+        transition-property: background-color;
+        color: $default-color;
+        background-color: lighten($default-color, 45%);
+    }
 }
 
 .buttonCard {
-    background-color: #ced4da ;
+    background-color: #ced4da;
     margin-right: 1.5rem  ;
-    border: solid #2c3e50;
+    border: solid $default-color;
 }
 
 .textButton {
-    color: #2c3e50;
+    color: $default-color;
 }

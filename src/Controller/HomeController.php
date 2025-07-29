@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\CommentRepository;
 use App\Repository\LocationRepository;
 use App\Repository\PictureRepository;
+use App\Repository\UserRepository;
 use App\Service\MeteoService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,21 +24,24 @@ final class HomeController extends AbstractController
 
 
     #[Route('/', name: 'app_home')]
-    public function index(
+    public function index(?int $userId = null,
         LocationRepository $locationRepository,
-        PictureRepository  $pictureRepository
+        PictureRepository  $pictureRepository,
+        UserRepository $userRepository
 
     ): Response
     {
         $weatherData = $this->meteoService->findByLocalWeather();
 
         $pictures = $pictureRepository->findByPictures(1);
+        $user = $userRepository->findOneBy(['id' => $userId]);
+
         $lastLocation = $locationRepository->findByLastLocation(3);
         return $this->render('home/index.html.twig', [
             'lastLocation' => $lastLocation,
             'pictures' => $pictures,
-            'weather' => $weatherData
-
+            'weather' => $weatherData,
+            'user' => $user
         ]);
     }
 }
