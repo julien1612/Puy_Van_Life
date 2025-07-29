@@ -5,7 +5,7 @@
 {% block body %}
     <div class="picture">
         <img src="{{ asset('pictures/louis-endelicher-azo3P0i2Dns-unsplash.png') }}" alt="banner" class="img-fluid">
-        <div class="bannerText ; col-12 col-md-8" style="width: 40%">
+        <div class="bannerText ; col-12 col-md-8">
             <h2>Prêts à conquérir le géant endormi ? Le Puy de Dôme en van, c'est l'expédition <strong>ultime !</strong>
             </h2>
         </div>
@@ -13,7 +13,7 @@
 
     <h2 class="titleH2">Lieux à découvrir</h2>
 
-    <div class="container w-75" style="text-align: center; margin-top: 3rem">
+    <div class="container w-75">
         <h5 class="textH5"><i>Le van n'est pas qu'un simple véhicule, c'est une invitation. Une fenêtre ouverte
                 sur l'horizon, un abri nomade où chaque kilomètre dessine une nouvelle liberté. C'est l'appel du large,
                 la douceur des matins improvisés et la promesse d'aventures, juste là, sur quatre roues.<br>
@@ -32,7 +32,8 @@
                     <img src="{{ mainPicture }}" class="card-img-top" alt="pictureLocation">
                     <h5 class="card-title titleCard">{{ location.address }}</h5>
                     <p class="card-text textCard">{{ location.description | u.truncate(100, '...') }}</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
+                    <button class="btn btn-secondary buttonCard" type="submit"
+                            aria-expanded="false"><a href="">Voir plus</a> </button>
                 </div>
             </div>
         {% endfor %}
