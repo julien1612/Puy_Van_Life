@@ -1,14 +1,18 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
 
 {% block body %}
 
-{{ form_errors(commentForm) }}
+    <h2 class="titleRegister">Ajouter un commentaire:</h2>
 
-   {{ form_start(commentForm) }}
+    <div class="container registerForm">
 
-    {{ form_end(commentForm) }}
+        {{ form_errors(commentForm) }}
+
+        {{ form_start(commentForm) }}
+
+        {{ form_end(commentForm) }}
+    </div>
 
 {% endblock %}

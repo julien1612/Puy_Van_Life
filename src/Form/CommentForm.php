@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -25,13 +26,17 @@ class CommentForm extends AbstractType
                 'constraints' => [
                     new Range(['min' => 0, 'max' => 10])
                 ],
-                'attr' => ['step' => 0.5, 'min' => 0, 'max' => 10]
+                'attr' => ['min' => 0, 'max' => 10, 'style' => 'width: 80px']
+
 
             ])
-            ->add('comment')
+            ->add('comment', TextareaType::class, [
+                'attr' => ['rows' => 6, 'placeholder' => 'Votre commentaire']
+
+            ])
 
         ->add('submit', SubmitType::class, [
-        'label' => 'Valider mon inscription',
+        'label' => 'Valider mon commentaire',
         'attr' => [
             'class' => 'btn btn-secondary btnForm',
         ]
