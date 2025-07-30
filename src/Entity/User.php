@@ -56,11 +56,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'user')]
     private Collection $picture;
 
+    /**
+     * @var Collection<int, FavoriteLocation>
+     */
+    #[ORM\OneToMany(targetEntity: FavoriteLocation::class, mappedBy: 'user')]
+    private Collection $favoriteLocations;
+
     public function __construct()
     {
         $this->locations = new ArrayCollection();
         $this->comment = new ArrayCollection();
         $this->picture = new ArrayCollection();
+        $this->favoriteLocations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,6 +239,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($picture->getUser() === $this) {
                 $picture->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FavoriteLocation>
+     */
+    public function getFavoriteLocations(): Collection
+    {
+        return $this->favoriteLocations;
+    }
+
+    public function addFavoriteLocation(FavoriteLocation $favoriteLocation): static
+    {
+        if (!$this->favoriteLocations->contains($favoriteLocation)) {
+            $this->favoriteLocations->add($favoriteLocation);
+            $favoriteLocation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteLocation(FavoriteLocation $favoriteLocation): static
+    {
+        if ($this->favoriteLocations->removeElement($favoriteLocation)) {
+            // set the owning side to null (unless already changed)
+            if ($favoriteLocation->getUser() === $this) {
+                $favoriteLocation->setUser(null);
             }
         }
 

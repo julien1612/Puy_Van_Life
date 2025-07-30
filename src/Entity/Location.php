@@ -66,10 +66,17 @@ class Location
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'location')]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, FavoriteLocation>
+     */
+    #[ORM\OneToMany(targetEntity: FavoriteLocation::class, mappedBy: 'location')]
+    private Collection $favoriteUsers;
+
     public function __construct()
     {
         $this->picture = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->favoriteUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -239,6 +246,36 @@ class Location
             // set the owning side to null (unless already changed)
             if ($comment->getLocation() === $this) {
                 $comment->setLocation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FavoriteLocation>
+     */
+    public function getFavoriteUsers(): Collection
+    {
+        return $this->favoriteUsers;
+    }
+
+    public function addFavoriteUser(FavoriteLocation $favoriteUser): static
+    {
+        if (!$this->favoriteUsers->contains($favoriteUser)) {
+            $this->favoriteUsers->add($favoriteUser);
+            $favoriteUser->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteUser(FavoriteLocation $favoriteUser): static
+    {
+        if ($this->favoriteUsers->removeElement($favoriteUser)) {
+            // set the owning side to null (unless already changed)
+            if ($favoriteUser->getLocation() === $this) {
+                $favoriteUser->setLocation(null);
             }
         }
 
