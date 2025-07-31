@@ -16,28 +16,24 @@ class FavoriteLocationRepository extends ServiceEntityRepository
         parent::__construct($registry, FavoriteLocation::class);
     }
 
-    //    /**
-    //     * @return FavoriteLocation[] Returns an array of FavoriteLocation objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('f.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findByFavoriteLocation(int $limit = null): array {
 
-    //    public function findOneBySomeField($value): ?FavoriteLocation
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $qb = $this->createQueryBuilder('fav')
+            ->leftJoin('fav.user', 'user')
+            ->leftJoin('fav.location', 'location')
+            ->groupBy('fav.location')
+            ->orderBy('fav.location', 'ASC')
+            ->distinct();
+
+
+if ($limit !== null) {
+    $qb->setMaxResults($limit);
+}
+        return $qb->getQuery()->getResult();
+
+    }
+
+
+
+
 }

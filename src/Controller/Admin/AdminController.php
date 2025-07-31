@@ -8,11 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class adminController extends AbstractController
+class AdminController extends AbstractController
 {
-    #[Route('/admin')]
+    #[Route('/admin',  name: 'app_admin')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig');
+
+        dump($this->getUser()->getRoles());
+        return $this->render('admin/admin_index.html.twig');
     }
 }

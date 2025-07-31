@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <h2 class="titleProfile">Mon favoris:</h2>
+
+    {% for favoriteLocation in favoriteLocations %}
+
+        <div class="container-fluid w-50 mx-auto mb-3">
+            <div class="d-flex ">
+                <div class="justify-content-center">
+
+                    <div class="card descriptionCard">
+                        <div class="card-body">
+                            <p class="card-title"><strong>Type:</strong> {{ favoriteLocation.location.type }}</p>
+                            <p class="card-subtitle mb-2 text-body-secondary"><strong>Créé
+                                    le:</strong> {{ favoriteLocation.location.createdAt.format('d/m/Y') }}</p>
+                            <p class="card-text">
+                                <strong>Description:</strong>{{ favoriteLocation.location.description }}</p>
+                            <p><strong>Prix du stationnement:</strong> {{ favoriteLocation.location.price }}€</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
