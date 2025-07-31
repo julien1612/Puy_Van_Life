@@ -71,6 +71,61 @@ class AdminController extends AbstractController
     {
     }
 
+    #[Route('/admin/location{id}', name: 'app_location_show')]
+    public function show(string $id, locationRepository $locationRepository, ): Response
+    {
+        $locationSolo = $locationRepository->find($id);
+        $picture = $locationSolo->getPicture();
+        $comments = $locationSolo->getComments();
+
+
+        return $this->render('admin/admin_showLocation.html.twig', [
+            'locationSolo' => $locationSolo,
+            'pictures' => $picture,
+            'comments' => $comments,
+        ]);
+    }
+
+    #[Route('/formLocation/{id}', name: 'app_location_edit' , methods: ['POST', 'GET'])]
+    public function edit(int $id, LocationRepository $locationRepository,Request $request, EntityManagerInterface $em): Response
+    {
+        $editLocation = $locationRepository ->findOneBy(['id' => $id]);
+
+        $form = $this->createForm(AddLocationForm::class, $editLocation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $editLocation->setCreatedAt(new DateTime());
+
+            $user = $this->getUser();
+            $editLocation->setUser($user);
+
+            $em->persist($editLocation);
+            $em->flush();
+
+            return $this->redirectToRoute('app_admin');
+        }
+        return $this->render('admin/admin_editLocation.html.twig', [
+            'editLocationForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/deleteFormLocation/{id}', name: 'app_deleteFormLocation' , methods: ['POST', 'GET'])]
+    public function delete(int $id, Request $request, LocationRepository $locationRepository, EntityManagerInterface $em): Response
+    {
+
+        $deleteLocation = $locationRepository->findOneBy(['id' => $id]);
+
+        $em->remove($deleteLocation);
+        $em->flush();
+
+        return $this->redirectToRoute('app_admin');
+
+
+
+
+    }
+
 
 }
 

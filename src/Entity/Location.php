@@ -57,7 +57,7 @@ class Location
     /**
      * @var Collection<int, Picture>
      */
-    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'location')]
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'location',cascade: ['remove'])]
     private Collection $picture;
 
     /**

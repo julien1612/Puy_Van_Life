@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container row w-50 mx-auto mt-5">
+    <div class="card">
+        <div class="card-header">
+          <strong> 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌 🚌</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Type:</strong> {{ locationSolo.type }} </li>
+            <li class="list-group-item"> <strong>Price:</strong> {{ locationSolo.price }} €</li>
+            <li class="list-group-item"> <strong>Description:</strong> {{ locationSolo.description }} </li>
+            <li class="list-group-item"><strong>Address:</strong> {{ locationSolo.address }}</li>
+            <li class="list-group-item"> <strong>ImagePath</strong> {{ locationSolo.imagePath }} </li>
+            <li class="list-group-item"> <strong>Latitude:</strong> {{ locationSolo.latitude }}</li>
+            <li class="list-group-item"> <strong>Longitude:</strong> {{ locationSolo.longitude }} </li>
+            {% for picture in pictures %}
+            <li class="list-group-item"> <img src="{{ picture.path }}" alt="img"></li>
+            {% endfor %}
+            {% for comment in comments %}
+            <li class="list-group-item"> <strong>Comment:</strong> {{ comment.comment }}  </li>
+                <li class="list-group-item"><strong>Rating:</strong> {{ comment.rating }}/10  </li>
+            {% endfor %}
+        </ul>
+    </div>
+    </div>
+{% endblock %}
