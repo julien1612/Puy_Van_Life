@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,8 +12,14 @@ use Symfony\Component\Routing\Attribute\Route;
 class EventController extends AbstractController
 {
     #[Route('/event', name: 'evenements_app')]
-    public function index(): Response
+    public function index(
+        EventRepository $eventRepository,
+    ): Response
     {
-        return $this->render('event/evenements.html.twig');
+        $event = $eventRepository->findAll();
+        return $this->render('event/evenements.html.twig', [
+            'events' => $event,
+        ]);
+
     }
 }

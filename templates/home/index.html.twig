@@ -33,7 +33,7 @@
                     <h5 class="card-title titleCard">{{ location.address }}</h5>
                     <p class="card-text textCard">{{ location.description | u.truncate(100, '...') }}</p>
                     <button class="btn btn-secondary buttonCard" type="submit"
-                            aria-expanded="false"><a href="">Voir plus</a> </button>
+                            aria-expanded="false"><a href="{{ path('soloLocation_app', {'id': location.id}) }}">Voir plus</a> </button>
                 </div>
             </div>
         {% endfor %}
