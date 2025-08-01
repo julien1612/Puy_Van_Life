@@ -121,10 +121,17 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin');
 
-
-
-
     }
+
+
+    #[Route('/menu', name: 'app_menu' )]
+    public function menu(): Response
+    {
+
+        return $this->render('admin/admin_menu.html.twig');
+    }
+
+
 
 
 }

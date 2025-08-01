@@ -2,25 +2,34 @@
 
 <meta charset="UTF-8">
 
+<head>
 
-       {% block javascripts %}
-           {{ encore_entry_script_tags('app') }}
-       {% endblock %}
+    <title>{% block title %}Puy Van life{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+
+<body>
+
+{% block header %}
+    {% include 'partial/header.html.twig' %}
+{% endblock %}
 
 
-        {% block header %}
-            {% include 'partial/header.html.twig' %}
-        {% endblock %}
-
-
-        {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
 
 
-        {% block footer %}
-            {% include 'partial/footer.html.twig' %}
-        {% endblock %}
+{% block footer %}
+    {% include 'partial/footer.html.twig' %}
+{% endblock %}
+
+</body>
+
+

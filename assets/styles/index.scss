@@ -48,3 +48,12 @@
 .linkWeather {
     color: #2c3e50
 }
+
+.toto{
+    display: flex;
+    justify-content: center;
+
+    @include media-breakpoint-down(md){
+        flex-direction: column;
+    }
+}
