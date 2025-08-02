@@ -4,11 +4,11 @@
 
 {% block body %}
 
-<div class="d-flex align-content-start flex-wrap">
+<div class="container mt-5">
+<div class="row">
     {% for event in events %}
-
-
-    <div class="card mb-3" style="max-width: 540px;">
+<div class="col-md-6">
+    <div class="card mb-3 mt-3 eventCard">
         <div class="row g-0">
             <div class="col-md-4">
                 {% set mainPicture='https://picsum.photos/200/300' %}
@@ -26,10 +26,10 @@
             </div>
         </div>
     </div>
-
+</div>
     {% endfor %}
     </div>
-
+    </div>
     <div class="navigation">
         {{ knp_pagination_render(events) }}
     </div

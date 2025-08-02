@@ -3,16 +3,13 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="picture">
-        <img src="{{ asset('pictures/louis-endelicher-azo3P0i2Dns-unsplash.png') }}" alt="banner" class="img-fluid">
-        <div class="bannerText ; col-12 col-md-8">
-            <h2>Prêts à conquérir le géant endormi ? Le Puy de Dôme en van, c'est l'expédition <strong>ultime !</strong>
+
+            <h2 class="bannerText">Prêts à conquérir le géant endormi ?<br> Le Puy de Dôme en van, c'est l'expédition <strong>ultime !</strong>
             </h2>
-        </div>
+
+<div class="titleH2">
+    <h2>Lieux à découvrir</h2>
     </div>
-
-    <h2 class="titleH2">Lieux à découvrir</h2>
-
     <div class="container w-75">
         <h5 class="textH5"><i>Le van n'est pas qu'un simple véhicule, c'est une invitation. Une fenêtre ouverte
                 sur l'horizon, un abri nomade où chaque kilomètre dessine une nouvelle liberté. C'est l'appel du large,
@@ -21,7 +18,7 @@
             </i></h5>
     </div>
 
-    <div class="toto">
+    <div class="lastLocation">
         {% for location in lastLocation %}
             <div class="card indexCard">
                 <div class="card-body">

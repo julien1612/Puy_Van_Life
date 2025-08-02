@@ -48,3 +48,23 @@ footer {
     margin-right: 1.5rem ; color: #2c3e50
 
 }
+
+.navbar{
+
+    @include media-breakpoint-down(lg){
+        .header-item{
+            flex-direction: column;
+
+            a{
+                text-align: center;
+            }
+
+            .nav-link{
+                color: #FFF;
+            }
+
+
+        }
+    }
+
+}

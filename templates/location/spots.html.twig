@@ -9,17 +9,17 @@
 
     <div class="container">
         <div class="row mt-5">
-            <div class="col-9">
+            <div class="col-12 col-md-9">
                 <div id="map"
                      data-location-items="{{ jsonLocations }}"
                 >
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-12 col-md-3">
                 <div class="row overflow-y-auto w-100 containerCard">
                     {% for location in locations %}
-                        <div class="col-12" data-location-id="{{ location.id }}" id="#location-{{ location.id }}">
-                            <div class="card cardLocation">
+                        <div class="col-9" data-location-id="{{ location.id }}" id="#location-{{ location.id }}">
+                            <div class="card cardLocation col-md-3">
                                 <div class="card-body">
                                     <div id={{ location.id }}>
                                         <h4>{{ location.address }}</h4>

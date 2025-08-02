@@ -6,7 +6,13 @@
 }
 
 .bannerText {
-    width: 40%;
+    text-align: center;
+    background-image: url("/public/pictures/louis-endelicher-azo3P0i2Dns-unsplash.png");
+    padding: 4rem;
+    color: #ced4da;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .textH5 {
@@ -20,6 +26,12 @@
     margin-right: 3rem;
     margin-top: 3rem ;
     background-color: #f1f3f6;
+
+    @include media-breakpoint-down(lg){
+        width: 100%;
+        margin-right: 0;
+    }
+
 }
 
 .titleCard {
@@ -39,6 +51,7 @@
 
 .pictureWeather {
     height: 30rem;
+    object-fit: cover;
 }
 
 .infoWeather {
@@ -49,11 +62,14 @@
     color: #2c3e50
 }
 
-.toto{
+.lastLocation {
     display: flex;
     justify-content: center;
 
-    @include media-breakpoint-down(md){
+    @include media-breakpoint-down(lg){
         flex-direction: column;
     }
 }
+
+
+
