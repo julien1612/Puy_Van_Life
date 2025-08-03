@@ -26,7 +26,6 @@ class ProfileController extends AbstractController
         $pictures = $pictureRepository->findBy(['location' => $id]);
 
         $favoriteLocation = $favoriteLocationRepository->findByFavoriteLocation();
-//        dd($favoriteLocation);
 
 
         return $this->render('security/profile.html.twig',[

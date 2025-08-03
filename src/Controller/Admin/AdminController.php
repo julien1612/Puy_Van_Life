@@ -23,8 +23,6 @@ class AdminController extends AbstractController
     #[Route('/admin',  name: 'app_admin')]
     public function indexAllLocation(PaginatorInterface $paginator, Request $request, locationRepository $locationRepository): Response
     {
-//               $location = $locationRepository->findAll();
-
 
         $location = $paginator->paginate(
             $locationRepository->findAll(),
@@ -130,8 +128,6 @@ class AdminController extends AbstractController
 
         return $this->render('admin/admin_menu.html.twig');
     }
-
-
 
 
 }
