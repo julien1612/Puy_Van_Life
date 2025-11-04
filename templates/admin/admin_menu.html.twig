@@ -4,14 +4,27 @@
 
 {% block body %}
 
-    <div class="container w-75">
-    <div class="admin-menu">
-    <ul>
+
+
+    <div class="container col-3 w-50">
+
+    <div class="admin-menu text-center">
+
         <div class="link-admin">
-        <li><a href="{{ path('app_admin') }}">Interagir avec tous les spots</a></li>
-        <li><a href="">Interagir avec tous les utilisateurs</a></li>
+            <h1 class="titleAdmin">Menu administrateur</h1>
+            <button class="btn btn-secondary buttonCard mb-3" type="button"
+                    aria-expanded="false">
+                <a class="textButton"
+                   href="{{ path('app_admin') }}">Interagir avec tous les spots</a>
+            </button>
+
+            <button class="btn btn-secondary buttonCard mb-3" type="button"
+                    aria-expanded="false">
+                <a class="textButton"
+                   href="{{ path('app_adminUser') }}">Interagir avec tous les utilisateurs</a>
+            </button>
+
     </div>
-    </ul>
     </div>
     </div>
 

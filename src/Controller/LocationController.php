@@ -16,15 +16,18 @@ use Symfony\Component\Serializer\SerializerInterface;
 class LocationController extends AbstractController
 {
 
+    //Controller de la route location
     #[Route('/location', name: 'spots_app')]
     public function index(
         LocationRepository  $locationRepository,
         SerializerInterface $serializer,
     ): Response
     {
+        //récupération de toute les locations dans la base de données
         $locations = $locationRepository->findAll();
         return $this->render('location/spots.html.twig', [
             'locations' => $locations,
+            //sérialisation des données en json (tableau)
             'jsonLocations' => $serializer->serialize(
                 $locations,
                 'json',

@@ -21,12 +21,13 @@ class EventController extends AbstractController
     {
         $event = $paginator->paginate(
             $eventRepository->findAll(),
-            $request->query->getInt('page', 1), /* page number */
-            10 /* limit per page */
+            $request->query->getInt('page', 1),
+            5
 
         );
         return $this->render('event/evenements.html.twig', [
             'events' => $event,
+            dump($event)
         ]);
 
     }

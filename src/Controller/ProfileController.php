@@ -15,23 +15,34 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile',  name: 'app_profile')]
-    public function index(?int $id,
-                            FavoriteLocationRepository $favoriteLocationRepository,
-                            PictureRepository $pictureRepository
-
-
+    #[Route('/profile', name: 'app_profile')]
+    public function index(
+        FavoriteLocationRepository $favoriteLocationRepository,
+        PictureRepository $pictureRepository,
+        LocationRepository $locationRepository
     ): Response
     {
-        $pictures = $pictureRepository->findBy(['location' => $id]);
+        $user = $this->getUser();
+        $location = null;
+        $pictures = [];
+        $favoritelocation = $favoriteLocationRepository->findByFavoriteLocation();
 
-        $favoriteLocation = $favoriteLocationRepository->findByFavoriteLocation();
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté.');
+        }
 
+        $locationsCollection = $user->getLocations();
 
-        return $this->render('security/profile.html.twig',[
-            'favoriteLocations' => $favoriteLocation,
-            'pictures' => $pictures
-            ]);
+        $location = $locationsCollection->first();
 
+        if ($location) {
+            $pictures = $pictureRepository->findBy(['location' => $location->getId()]);
+        }
+
+        return $this->render('security/profile.html.twig', [
+            'favoriteLocations' => $favoritelocation,
+            'pictures' => $pictures,
+            'location' => $location,
+        ]);
     }
 }

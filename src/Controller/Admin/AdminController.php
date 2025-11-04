@@ -24,6 +24,7 @@ class AdminController extends AbstractController
     public function indexAllLocation(PaginatorInterface $paginator, Request $request, locationRepository $locationRepository): Response
     {
 
+        //récupération et pagination
         $location = $paginator->paginate(
             $locationRepository->findAll(),
             $request->query->getInt('page', 1), /* page number */
@@ -31,28 +32,47 @@ class AdminController extends AbstractController
 
         );
 
-
-        dump($this->getUser()->getRoles());
         return $this->render('admin/admin_index.html.twig', [
             'locations' => $location,
         ]);
     }
 
+    #[Route('/admin/user',  name: 'app_adminUser')]
+    public function indexUser(PaginatorInterface $paginator, Request $request, UserRepository $userRepository): Response
+    {
+        //récupération et pagination
+        $user = $paginator->paginate(
+            $userRepository->findAll(),
+            $request->query->getInt('page', 1), /* page number */
+            10 /* limit per page */
+        );
+
+        return $this->render('admin/admin_user.html.twig', [
+            'users' => $user,
+        ]);
+    }
+
+
 
     #[Route('/formLocation', name: 'app_formLocation' , methods: ['POST', 'GET'])]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
+        //On crée un nouvel objet Location vide
         $newLocation = new Location();
 
+        //création du form
         $form = $this->createForm(AddLocationForm::class, $newLocation);
         $form->handleRequest($request);
 
+        //Vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $newLocation->setCreatedAt(new DateTime());
 
+            //Récupère l'utilisateur connecté et l'associe à la location
             $user = $this->getUser();
             $newLocation->setUser($user);
 
+            //prépare et enregistre
             $em->persist($newLocation);
             $em->flush();
 
@@ -70,7 +90,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/location{id}', name: 'app_location_show')]
-    public function show(string $id, locationRepository $locationRepository, ): Response
+    public function show(string $id, locationRepository $locationRepository): Response
     {
         $locationSolo = $locationRepository->find($id);
         $picture = $locationSolo->getPicture();

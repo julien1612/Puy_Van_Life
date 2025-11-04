@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h2 class="titleProfile">Mon favoris:</h2>
+    <h2 class="titleProfile">Mes favoris:</h2>
 
     {% for favoriteLocation in favoriteLocations %}
 
@@ -20,6 +20,8 @@
                             <p class="card-text">
                                 <strong>Description:</strong>{{ favoriteLocation.location.description }}</p>
                             <p><strong>Prix du stationnement:</strong> {{ favoriteLocation.location.price }}€</p>
+                                <button class="btn btn-secondary buttonCard" type="submit"
+                                        aria-expanded="false"><a href="{{ path('soloLocation_app', {'id': location.id}) }}">Voir plus</a> </button>
                         </div>
                     </div>
                 </div>

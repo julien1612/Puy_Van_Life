@@ -31,12 +31,19 @@ final class HomeController extends AbstractController
 
     ): Response
     {
+        //Récupère les données météo via un service dédié
         $weatherData = $this->meteoService->findByLocalWeather();
 
+        // Récupère les photos
         $pictures = $pictureRepository->findByPictures(1);
+
+        // Trouve un utilisateur par son ID
         $user = $userRepository->findOneBy(['id' => $userId]);
 
+        // Récupère les trois dernières localisations
         $lastLocation = $locationRepository->findByLastLocation(3);
+
+
         return $this->render('home/index.html.twig', [
             'lastLocation' => $lastLocation,
             'pictures' => $pictures,

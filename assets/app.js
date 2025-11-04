@@ -8,36 +8,43 @@ import './bootstrap.js';
 import 'bootstrap';
 import './styles/app.scss';
 
-
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
-
-
+//récupération de la map (div map)
 let map = document.querySelector("#map");
 
 if (map !== null) {
 
+    //récupération de mes données en json
     const locationsJson = map.getAttribute('data-location-items');
     let locations = [];
     if (locationsJson) {
+        //conversion des données json en tableau ([]locations)
         locations = JSON.parse(locationsJson);
     }
 
+    //vue de base de la map
     map = L.map('map').setView([45.783, 3.083], 9);
 
+    //paramétrage de la map
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+    //boucle sur les location
     for (let i = 0; i < locations.length; i++) {
         let location = locations[i]
 
+        //positionnement des marker
         let marker = L.marker([location.latitude, location.longitude]).addTo(map);
 
+        //récupération de la card liée a ma location
         const cardElement = document.querySelector('[data-location-id="' + location.id + '"]');
+
+        //événement au click
         marker.on('click', () => {
             cardElement.style.backgroundColor = 'lightblue';
 
+            //si un marker est déja focus on dé-focus
             const elementAlreadyFocus = document.querySelector('.location-focus');
             if (elementAlreadyFocus) {
                 elementAlreadyFocus.classList.remove('location-focus');
@@ -46,8 +53,9 @@ if (map !== null) {
             cardElement.scrollIntoView();
             cardElement.classList.add('location-focus');
         });
+
+        //au click une card deplace dans la carte pour voir le marker
         cardElement.addEventListener('click', () => {
-            console.log(location)
             map.flyTo([location.latitude, location.longitude], 12);
             marker.bindPopup("<b>"+location.address+"</b>").openPopup();
         });

@@ -6,11 +6,8 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\User;
-use App\Factory\UserFactory;
 use App\Form\CommentForm;
-use App\Repository\CommentRepository;
 use App\Repository\LocationRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
