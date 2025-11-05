@@ -53,7 +53,7 @@ class RegistrationForm extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider mon inscription',
                 'attr' => [
-                    'class' => 'btn btn-secondary btnForm',
+                    'class' => 'btn btn-secondary btnForm mt-2',
                 ]
             ]);
     }
