@@ -2,6 +2,15 @@
 #map {
     height: 40rem;
     width: 100%;
+    border: solid #2c3e50;
+    overflow: hidden;
+    -webkit-box-shadow: 10px 15px 15px 0px #2c3e50;
+    -moz-box-shadow: 10px 15px 15px 0px #2c3e50;
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=10, OffY=15, Color='#2c3e50', Positive='true');
+    zoom:1;
+    box-shadow: 10px 15px 15px 0px #2c3e50;
+    -moz-border-radius:32px;
+    -webkit-border-radius:32px;
 }
 
 .containerCard {
@@ -12,6 +21,9 @@
     width: 18rem;
     margin-bottom: 1rem;
     cursor: pointer;
+    border: solid #2c3e50;
+    overflow: hidden;
+    border-radius: 2rem;
 
     &:hover {
         transition-duration: 700ms;

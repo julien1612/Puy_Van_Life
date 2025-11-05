@@ -19,21 +19,28 @@
     </div>
 
     <div class="lastLocation">
+        <div class="row align-items-stretch">
         {% for location in lastLocation %}
-            <div class="card indexCard">
-                <div class="card-body">
+        <div class="col-md-4 mb-4">
+            <div class="card indexCard h-100">
+
                     {% set mainPicture='https://picsum.photos/200/300' %}
                     {% if location.picture|length > 0 %}
                         {% set mainPicture = location.picture[0].path ~ '?rand=' ~ random(1000) %}
                     {% endif %}
                     <img src="{{ mainPicture }}" class="card-img-top" alt="pictureLocation">
-                    <h5 class="card-title titleCard">{{ location.address }}</h5>
-                    <p class="card-text textCard">{{ location.description | u.truncate(100, '...') }}</p>
+                    <div class="card-body p-1 d-flex flex-column">
+                    <h5 class="card-title titleCard mx-2 mb-3">{{ location.address }}</h5>
+                    <p class="card-text textCard mx-2 flex-grow-1 mb-0">{{ location.description | u.truncate(100, '...') }}</p>
+                        <div class="mt-auto mx-2 mb-2 mt-0">
                     <button class="btn btn-secondary buttonCard" type="submit"
                             aria-expanded="false"><a href="{{ path('soloLocation_app', {'id': location.id}) }}">Voir plus</a> </button>
                 </div>
             </div>
+            </div>
+        </div>
         {% endfor %}
+    </div>
     </div>
 
     <h2 class="titleWeather">Point météo</h2>

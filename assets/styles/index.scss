@@ -26,7 +26,17 @@
     margin-right: 3rem;
     margin-top: 3rem ;
     background-color: #f1f3f6;
-
+    border-radius: 2rem;
+    border: solid #2c3e50;
+    overflow: hidden;
+    -webkit-box-shadow: 10px 15px 15px 0px #2c3e50;
+    -moz-box-shadow: 10px 15px 15px 0px #2c3e50;
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=10, OffY=15, Color='#2c3e50', Positive='true');
+    zoom:1;
+    box-shadow: 10px 15px 15px 0px #2c3e50;
+    -moz-border-radius:32px;
+    -webkit-border-radius:32px;
+    border-radius:32px;
     @include media-breakpoint-down(lg){
         width: 100%;
         margin-right: 0;
@@ -34,12 +44,12 @@
 
 }
 
-.titleCard {
+.textCard {
     color: #2c3e50;
 }
 
-.textCard {
-    color: #2c3e50;
+.buttonCard {
+    margin: 1rem;
 }
 
 .titleWeather {
@@ -52,6 +62,13 @@
 .pictureWeather {
     height: 30rem;
     object-fit: cover;
+    -webkit-box-shadow: 10px 15px 15px 0px #2c3e50;
+    -moz-box-shadow: 10px 15px 15px 0px #2c3e50;
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=10, OffY=15, Color='#2c3e50', Positive='true');
+    zoom:1;
+    box-shadow: 10px 15px 15px 0px #2c3e50;
+    -moz-border-radius:32px;
+    -webkit-border-radius:32px;
 }
 
 .infoWeather {
