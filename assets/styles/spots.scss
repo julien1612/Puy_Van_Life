@@ -6,11 +6,11 @@
     overflow: hidden;
     -webkit-box-shadow: 10px 15px 15px 0px #2c3e50;
     -moz-box-shadow: 10px 15px 15px 0px #2c3e50;
-    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=10, OffY=15, Color='#2c3e50', Positive='true');
-    zoom:1;
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=10, OffY=15, Color='#2c3e50', Positive='true');
+    zoom: 1;
     box-shadow: 10px 15px 15px 0px #2c3e50;
-    -moz-border-radius:32px;
-    -webkit-border-radius:32px;
+    -moz-border-radius: 32px;
+    -webkit-border-radius: 32px;
 }
 
 .containerCard {
@@ -35,7 +35,7 @@
 
 .buttonCard {
     background-color: #ced4da;
-    margin-right: 1.5rem  ;
+    margin-right: 1.5rem;
     border: solid 1px #2c3e50;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
@@ -45,6 +45,7 @@
         text-decoration: none;
         transition: color 0.3s ease;
     }
+
     &:hover {
         background-color: #78839f;
         border-color: #78839f;

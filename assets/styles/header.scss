@@ -11,8 +11,8 @@ a {
 
 
 .bg-custom {
-    background-color: #bdc3c7;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background-color: #bdc3c7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 10px
 }
@@ -56,17 +56,17 @@ h1 {
 }
 
 
-.navbar{
+.navbar {
 
-    @include media-breakpoint-down(lg){
-        .header-item{
+    @include media-breakpoint-down(lg) {
+        .header-item {
             flex-direction: column;
 
-            a{
+            a {
                 text-align: center;
             }
 
-            .nav-link{
+            .nav-link {
                 color: #FFF;
             }
 

@@ -14,16 +14,16 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 col-md-9">
-{#                affichage de la carte et passage des données dans le HTML (sous format json) #}
+                {#                affichage de la carte et passage des données dans le HTML (sous format json) #}
                 <div id="map" data-location-items="{{ jsonLocations }}">
                 </div>
             </div>
-{#            récupération de locations en base de donnée et affichage#}
+            {#            récupération de locations en base de donnée et affichage #}
             <div class="col-12 col-md-3">
                 <div class="row overflow-y-auto w-100 containerCard">
 
                     {% for location in locations %}
-{#                        boucle pour récupérer la carte locations et pouvoir la récupérer dans la partie js #}
+                        {#                        boucle pour récupérer la carte locations et pouvoir la récupérer dans la partie js #}
                         <div class="col-9" data-location-id="{{ location.id }}" id="#location-{{ location.id }}">
                             <div class="card cardLocation col-md-3">
                                 <div class="card-body">

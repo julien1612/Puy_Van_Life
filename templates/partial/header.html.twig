@@ -1,63 +1,66 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
     <div class="container-fluid bg-custom p">
         <img src="{{ asset('pictures/Gemini_Generated_Image_43xthc43xthc43xt.png') }}" alt="logo">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <div class="titleHeader"><h1>PuyVanLife</h1></div>
-        <div class="d-flex header-item" role="search">
-            <a class="nav-link my-auto" href="{{ path('app_home') }}"><strong>
-                    Accueil</strong></a>
-            <a class="nav-link my-auto" href="{{ path('spots_app') }}"><strong>Les
-                    spots</strong></a>
-            <a class="nav-link my-auto" href="{{ path('evenements_app') }}"><strong>Evenements</strong></a>
-            <a class="nav-link my-auto" href="{{ path('charter_app') }}"><strong>La chartre</strong></a>
+            <div class="titleHeader"><h1>PuyVanLife</h1></div>
+            <div class="d-flex header-item" role="search">
+                <a class="nav-link my-auto" href="{{ path('app_home') }}"><strong>
+                        Accueil</strong></a>
+                <a class="nav-link my-auto" href="{{ path('spots_app') }}"><strong>Les
+                        spots</strong></a>
+                <a class="nav-link my-auto" href="{{ path('evenements_app') }}"><strong>Evenements</strong></a>
+                <a class="nav-link my-auto" href="{{ path('charter_app') }}"><strong>La chartre</strong></a>
 
-            {% if app.user %}
+                {% if app.user %}
 
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle buttonHeader nav-link my-auto p-2 " type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-person" viewBox="0 0 16 16">
-                            <path
-                                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                        </svg>
-                        {{ app.user.username }}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle buttonHeader nav-link my-auto p-2 "
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-person" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                            </svg>
+                            {{ app.user.username }}
 
-                    </button>
-                    <ul class="dropdown-menu">
+                        </button>
+                        <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" href="{{ path('app_profile') }}">Voir mon profil</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
-                        {% if is_granted('ROLE_MANAGER') %}
+                            <li><a class="dropdown-item" href="{{ path('app_profile') }}">Voir mon profil</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                            {% if is_granted('ROLE_MANAGER') %}
 
-                        <li><a class="dropdown-item" href="{{ path('app_menu') }}">Admin</a></li>
-                                {% else %}
-                        {% endif %}
+                                <li><a class="dropdown-item" href="{{ path('app_menu') }}">Admin</a></li>
+                            {% else %}
+                            {% endif %}
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
-            {% else %}
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle buttonHeader nav-link my-auto p-2 " type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Mon compte
-                    </button>
-                    <ul class="dropdown-menu">
+                {% else %}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle buttonHeader nav-link my-auto p-2 "
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Mon compte
+                        </button>
+                        <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" href="{{ path('app_login') }}">Me connecter</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_login') }}">Me connecter</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a></li>
 
-                    </ul>
-                </div>
-            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
     </div>
 
 </nav>

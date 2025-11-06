@@ -4,11 +4,12 @@
 
 {% block body %}
 
-            <h2 class="bannerText">Prêts à conquérir le géant endormi ?<br> Le Puy de Dôme en van, c'est l'expédition <strong>ultime !</strong>
-            </h2>
+    <h2 class="bannerText">Prêts à conquérir le géant endormi ?<br> Le Puy de Dôme en van, c'est l'expédition <strong>ultime
+            !</strong>
+    </h2>
 
-<div class="titleH2">
-    <h2>Lieux à découvrir</h2>
+    <div class="titleH2">
+        <h2>Lieux à découvrir</h2>
     </div>
     <div class="container w-75">
         <h5 class="textH5"><i>Le van n'est pas qu'un simple véhicule, c'est une invitation. Une fenêtre ouverte
@@ -20,41 +21,46 @@
 
     <div class="lastLocation">
         <div class="row align-items-stretch">
-        {% for location in lastLocation %}
-        <div class="col-md-4 mb-4">
-            <div class="card indexCard h-100">
+            {% for location in lastLocation %}
+                <div class="col-md-4 mb-4">
+                    <div class="card indexCard h-100">
 
-                    {% set mainPicture='https://picsum.photos/200/300' %}
-                    {% if location.picture|length > 0 %}
-                        {% set mainPicture = location.picture[0].path ~ '?rand=' ~ random(1000) %}
-                    {% endif %}
-                    <img src="{{ mainPicture }}" class="card-img-top" alt="pictureLocation">
-                    <div class="card-body p-1 d-flex flex-column">
-                    <h5 class="card-title titleCard mx-2 mb-3">{{ location.address }}</h5>
-                    <p class="card-text textCard mx-2 flex-grow-1 mb-0">{{ location.description | u.truncate(100, '...') }}</p>
-                        <div class="mt-auto mx-2 mb-2 mt-0">
-                    <button class="btn btn-secondary buttonCard" type="submit"
-                            aria-expanded="false"><a href="{{ path('soloLocation_app', {'id': location.id}) }}">Voir plus</a> </button>
+                        {% set mainPicture='https://picsum.photos/200/300' %}
+                        {% if location.picture|length > 0 %}
+                            {% set mainPicture = location.picture[0].path ~ '?rand=' ~ random(1000) %}
+                        {% endif %}
+                        <img src="{{ mainPicture }}" class="card-img-top" alt="pictureLocation">
+                        <div class="card-body p-1 d-flex flex-column">
+                            <h5 class="card-title titleCard mx-2 mb-3">{{ location.address }}</h5>
+                            <p class="card-text textCard mx-2 flex-grow-1 mb-0">{{ location.description | u.truncate(100, '...') }}</p>
+                            <div class="mt-auto mx-2 mb-2 mt-0">
+                                <button class="btn btn-secondary buttonCard" type="submit"
+                                        aria-expanded="false"><a
+                                        href="{{ path('soloLocation_app', {'id': location.id}) }}">Voir plus</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
     </div>
 
     <h2 class="titleWeather">Point météo</h2>
 
     <div class="container col-md-8">
         <div class="card text-bg-dark">
-            <img src="{{ asset('pictures/puy-dome-JQvrJtqI4Yg-unsplash (1).jpg') }}" class="card-img, img-fluid pictureWeather"
+            <img src="{{ asset('pictures/puy-dome-JQvrJtqI4Yg-unsplash (1).jpg') }}"
+                 class="card-img, img-fluid pictureWeather"
                  alt="pictureWeather">
             <div class="card-img-overlay infoWeather">
 
                 {# Carte pour afficher les informations météo #}
                 <h5 class="card-title">Clermont Ferrand</h5>
-                <p class="card-text">Température extérieure: <strong>{{ weather.current.temperature_2m }} °c</strong></p>
-                <p class="card-text">Température ressentie: <strong>{{ weather.current.apparent_temperature }} °c</strong></p>
+                <p class="card-text">Température extérieure: <strong>{{ weather.current.temperature_2m }} °c</strong>
+                </p>
+                <p class="card-text">Température ressentie: <strong>{{ weather.current.apparent_temperature }}
+                        °c</strong></p>
                 <p class="card-text">Humidité: <strong>{{ weather.current.relative_humidity_2m }} %</strong></p>
                 <p class="card-text">Précipitations: <strong>{{ weather.current.precipitation }} mm</strong></p>
                 <p class="card-text">Vent: <strong>{{ weather.current.wind_speed_10m }} km/h</strong></p>
@@ -62,7 +68,7 @@
         </div>
         <button class="btn btn-secondary buttonWeather mt-4" type="submit"
                 aria-expanded="false">
-        <a href="https://meteofrance.com/previsions-meteo-france/auvergne-rhone-alpes/10"> 👉 Pour plus d'info</a>
+            <a href="https://meteofrance.com/previsions-meteo-france/auvergne-rhone-alpes/10"> 👉 Pour plus d'info</a>
         </button>
     </div>
 {% endblock %}
