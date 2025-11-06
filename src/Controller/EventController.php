@@ -27,7 +27,6 @@ class EventController extends AbstractController
         );
         return $this->render('event/evenements.html.twig', [
             'events' => $event,
-            dump($event)
         ]);
 
     }

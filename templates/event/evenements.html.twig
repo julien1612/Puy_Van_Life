@@ -4,7 +4,9 @@
 
 {% block body %}
 
-<div class="container mt-5">
+    <h1 class="text-center titleAdmin mt-5 ">Agenda</h1>
+
+<div class="container mt-5 w-75 mx-auto">
 <div class="row">
     {% for event in events %}
 <div class="col-md-12">
@@ -15,13 +17,12 @@
                 {% if event.imagePath|length > 0 %}
                     {% set mainPicture = event.imagePath ~ '?rand=' ~ random(1000) %}
                 {% endif %}
-                <img src="{{ mainPicture }}" class="img-fluid rounded-start" alt="img">
+                <img src="{{ mainPicture }}" class="img-fluid rounded-start w-75" alt="img">
             </div>
             <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.title }}</h5>
-                    <p class="card-text">{{ event.description }}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{ event.date.format('d/m/Y') }}</small></p>
+                <div class="card-body ">
+                    <h5 class="card-title d-flex justify-content-center mt-3 mb-4">{{ event.title }}</h5>
+                    <p class="card-text mx-5">{{ event.description }}</p>
                 </div>
             </div>
         </div>
@@ -30,10 +31,9 @@
     {% endfor %}
     </div>
     </div>
-    <div class="navigation">
-        {{ knp_pagination_render(events) }}
-    </div
 
+    <div class="navigation">
+        {{ knp_pagination_render(events, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}        </div>
 
 
 

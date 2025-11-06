@@ -38,16 +38,19 @@ if (map !== null) {
         let marker = L.marker([location.latitude, location.longitude]).addTo(map);
 
         //récupération de la card liée a ma location
+
         const cardElement = document.querySelector('[data-location-id="' + location.id + '"]');
 
         //événement au click
         marker.on('click', () => {
-            cardElement.style.backgroundColor = 'lightblue';
+            const cardBody = cardElement.querySelector('.cardLocation');
+                cardBody.style.backgroundColor = '#9bb1c7';
 
             //si un marker est déja focus on dé-focus
             const elementAlreadyFocus = document.querySelector('.location-focus');
             if (elementAlreadyFocus) {
                 elementAlreadyFocus.classList.remove('location-focus');
+
 
             }
             cardElement.scrollIntoView();
@@ -58,6 +61,7 @@ if (map !== null) {
         cardElement.addEventListener('click', () => {
             map.flyTo([location.latitude, location.longitude], 12);
             marker.bindPopup("<b>"+location.address+"</b>").openPopup();
+
         });
     }
 }
