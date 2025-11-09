@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evénements{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container row w-50 mx-auto mt-5">
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Title:</strong> {{ eventSolo.title }} </li>
+                <li class="list-group-item"><strong>Description:</strong> {{ eventSolo.description }} </li>
+                <li class="list-group-item"><img src="{{ eventSolo.imagePath }}" alt="img"></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 
+use App\Entity\Event;
 use App\Entity\Location;
 use App\Entity\User;
+use App\Form\AddEventForm;
 use App\Form\AddLocationForm;
+use App\Repository\EventRepository;
 use App\Repository\LocationRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -53,7 +56,7 @@ class AdminController extends AbstractController
     }
 
 
-
+//CRUD spot
     #[Route('/formLocation', name: 'app_formLocation' , methods: ['POST', 'GET'])]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
@@ -141,6 +144,101 @@ class AdminController extends AbstractController
 
     }
 
+    //CRUD event
+
+    #[Route('/adminEvent',  name: 'app_event')]
+    public function indexAllEvent(PaginatorInterface $paginator, Request $request, eventRepository $eventRepository): Response
+    {
+
+        //récupération et pagination
+        $event = $paginator->paginate(
+            $eventRepository->findAll(),
+            $request->query->getInt('page', 1), /* page number */
+            10 /* limit per page */
+
+        );
+
+        return $this->render('admin/admin_indexEvent.html.twig', [
+            'events' => $event,
+        ]);
+    }
+
+    #[Route('/formEvent', name: 'app_formEvent' , methods: ['POST', 'GET'])]
+    public function addEvent(Request $request, EntityManagerInterface $em): Response
+    {
+        //On crée un nouvel objet event vide
+        $newEvent = new Event();
+
+        //création du form
+        $form = $this->createForm(AddEventForm::class, $newEvent);
+        $form->handleRequest($request);
+
+        //Vérifie si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newEvent->setCreatedAt(new DateTime());
+
+            //Récupère l'utilisateur connecté et l'associe à la location
+            $user = $this->getUser();
+            $newEvent->setUser($user);
+
+            //prépare et enregistre
+            $em->persist($newEvent);
+            $em->flush();
+
+            return $this->redirectToRoute('app_event');
+        }
+        return $this->render('admin/admin_addEvent.html.twig', [
+            'eventForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/admin/event{id}', name: 'app_event_show')]
+    public function showEvent(string $id, eventRepository $eventRepository): Response
+    {
+        $eventSolo = $eventRepository->find($id);
+
+
+        return $this->render('admin/admin_showEvent.html.twig', [
+            'eventSolo' => $eventSolo,
+        ]);
+    }
+
+    #[Route('/formEvent/{id}', name: 'app_event_edit' , methods: ['POST', 'GET'])]
+    public function editEvent(int $id, EventRepository $eventRepository,Request $request, EntityManagerInterface $em): Response
+    {
+        $editEvent = $eventRepository ->findOneBy(['id' => $id]);
+
+        $form = $this->createForm(AddEventForm::class, $editEvent);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $editEvent->setCreatedAt(new DateTime());
+
+            $user = $this->getUser();
+            $editEvent->setUser($user);
+
+            $em->persist($editEvent);
+            $em->flush();
+
+            return $this->redirectToRoute('app_event');
+        }
+        return $this->render('admin/admin_editEvent.html.twig', [
+            'editEventForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/deleteFormEvent/{id}', name: 'app_deleteFormEvent' , methods: ['POST', 'GET'])]
+    public function deleteEvent(int $id, Request $request, EventRepository $eventRepository, EntityManagerInterface $em): Response
+    {
+
+        $deleteEvent = $eventRepository->findOneBy(['id' => $id]);
+
+        $em->remove($deleteEvent);
+        $em->flush();
+
+        return $this->redirectToRoute('app_event');
+
+    }
 
     #[Route('/menu', name: 'app_menu' )]
     public function menu(): Response

@@ -78,4 +78,12 @@ class Event
 
         return $this;
     }
+
+    public function setCreatedAt(\DateTime $param)
+    {
+    }
+
+    public function setUser(?\Symfony\Component\Security\Core\User\UserInterface $user)
+    {
+    }
 }

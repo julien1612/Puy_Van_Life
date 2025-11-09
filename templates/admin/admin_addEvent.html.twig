@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add event{% endblock %}
+
+{% block body %}
+    <div class="container w-50 mt-5">
+
+        <h2 class="text-center">Add Event</h2>
+        {{ form_start(eventForm) }}
+
+        {{ form_end(eventForm) }}
+
+    </div>
+{% endblock %}
